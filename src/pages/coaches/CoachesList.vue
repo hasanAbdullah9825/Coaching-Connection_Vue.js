@@ -8,9 +8,15 @@
 <router-link to="/register">Register</router-link>
         </div>
         <ul v-if="isCoach">
-            <li v-for="coach in filteredCoaches" :key="coach.id">
-{{ coach.firstName }}
-            </li>
+            <Coach-item 
+            v-for="coach in filteredCoaches" :key="coach.id"
+            :id="coach.id"
+            :first-name="coach.firstName"
+            :last-name="coach.lastName"
+            :rate="coach.hourlyRate"
+            :areas="coach.areas"
+            
+            ></Coach-item>
         </ul>
         <h3 v-else>No coaches found</h3>
     </section>
@@ -35,7 +41,12 @@ body{
 
 
 <script>
+import CoachItem from '../../components/coaches/CoachItem.vue';
 export default {
+  components:{
+    CoachItem
+  },
+
     computed:{
       filteredCoaches(){
         return this.$store.getters['coaches/coaches'];
@@ -43,7 +54,16 @@ export default {
 
       isCoach(){
         return this.$store.getters['coaches/hasCoaches'];
-      }
+      },
+
+
     }
 }
 </script>
+
+
+<style scoped>
+ul {
+  list-style-type: none;
+}
+</style>
