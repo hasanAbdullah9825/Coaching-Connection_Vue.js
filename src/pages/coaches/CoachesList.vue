@@ -2,10 +2,10 @@
     <section>Filter</section>
 
     <section>
-
+<base-card>
         <div class="controls">
 <button>Refresh</button>
-<router-link to="/register">Register</router-link>
+<router-link to="/register">Register As a Coach</router-link>
         </div>
         <ul v-if="isCoach">
             <Coach-item 
@@ -19,6 +19,7 @@
             ></Coach-item>
         </ul>
         <h3 v-else>No coaches found</h3>
+      </base-card>
     </section>
 </template>
 
@@ -42,6 +43,7 @@ body{
 
 <script>
 import CoachItem from '../../components/coaches/CoachItem.vue';
+
 export default {
   components:{
     CoachItem
@@ -65,5 +67,12 @@ export default {
 <style scoped>
 ul {
   list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
 }
 </style>
